@@ -8,21 +8,21 @@
 option(
     'libcurl',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'required for fetching wraps',
 )
 
 option(
     'libarchive',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'required for extracting wrap archives',
 )
 
 option(
     'libpkgconf',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'enable libpkgconf backend for pkg-config dependency discovery',
 )
 
@@ -69,7 +69,7 @@ option(
 option(
     'static',
     type: 'boolean',
-    value: false,
+    value: true,
     description: 'build a static muon executable',
 )
 
@@ -80,7 +80,7 @@ option(
 option(
     'man-pages',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'build man pages',
 )
 

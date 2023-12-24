@@ -155,7 +155,7 @@ link_args = []
 
 if get_option('static')
     muon_c_args += '-DMUON_STATIC'
-    link_args += '-static'
+    # link_args += '-static'
 endif
 
 # tracy
@@ -182,24 +182,43 @@ python3 = find_program('python3', required: get_option('meson-docs'))
 if python3.found() and not get_option('meson-docs').disabled()
     meson_docs_proj = subproject('meson-docs', required: get_option('meson-docs'))
     if meson_docs_proj.found()
-        src += meson_docs_proj.get_variable('meson_docs_h')
+        lib_src += meson_docs_proj.get_variable('meson_docs_h')
         muon_c_args += ['-DHAVE_MESON_DOCS_H']
     endif
 else
     meson_docs_proj = dependency('', required: false)
 endif
 
-muon = executable(
+muon_lib = library(
     'muon',
-    src,
+    lib_src,
     dependencies: deps,
     include_directories: include_dir,
     link_args: link_args,
     c_args: muon_c_args,
     cpp_args: muon_c_args,
-    install: true,
-    export_dynamic: muon_export_dynamic,
 )
 
-subdir('tests')
+muon_dep = declare_dependency(
+    link_with: muon_lib,
+    dependencies: deps,
+    include_directories: include_dir,
+)
+
+if not meson.is_subproject()
+    muon = executable(
+        'muon',
+        src,
+        dependencies: muon_dep,
+        include_directories: include_dir,
+        link_args: link_args,
+        c_args: muon_c_args,
+        cpp_args: muon_c_args,
+        install: true,
+        export_dynamic: muon_export_dynamic,
+    )
+
+    subdir('tests')
+endif
+
 subdir('doc')
