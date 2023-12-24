@@ -4,19 +4,19 @@
 option(
     'libcurl',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'required for fetching wraps',
 )
 option(
     'libarchive',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'required for extracting wrap archives',
 )
 option(
     'libpkgconf',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'required for dependency discovery with pkg-config files',
 )
 option(
@@ -35,13 +35,13 @@ option(
 option(
     'static',
     type: 'boolean',
-    value: false,
+    value: true,
     description: 'build a static muon executable',
 )
 option(
     'docs',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'build documentation',
 )
 option(
@@ -53,7 +53,7 @@ option(
 option(
     'tracy',
     type: 'feature',
-    value: 'auto',
+    value: 'disabled',
     description: 'whether to enable tracy',
 )
 option(

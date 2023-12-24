@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Stone Tickle <lattis@mochiro.moe>
 # SPDX-License-Identifier: GPL-3.0-only
 
-src = files(
+lib_src = files(
     'backend/backend.c',
     'backend/common_args.c',
     'backend/ninja.c',
@@ -99,13 +99,17 @@ src = files(
     'wrap.c',
 )
 
+src = files(
+    'main.c',
+)
+
 deps = []
 
 subdir('platform')
-src += platform_sources
+lib_src += platform_sources
 
 # version information
-src += configure_file(
+lib_src += configure_file(
     configuration: version_info,
     input: 'version.c.in',
     output: 'version.c',
@@ -113,11 +117,11 @@ src += configure_file(
 
 # embedded scripts
 subdir('script')
-src += script_sources
+lib_src += script_sources
 
 # dependencies
 subdir('external')
-src += dep_sources
+lib_src += dep_sources
 deps += external_deps
 
 if get_option('ui').enabled()
