@@ -174,7 +174,6 @@ muon_dep = declare_dependency(
     include_directories: include_dir,
 )
 
-
 muon = executable(
     'muon',
     src,
