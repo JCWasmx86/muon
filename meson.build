@@ -63,7 +63,7 @@ link_args = []
 
 if get_option('static')
     c_args += '-DMUON_STATIC'
-    link_args += '-static'
+    #link_args += '-static'
 endif
 
 cc = meson.get_compiler('c')
