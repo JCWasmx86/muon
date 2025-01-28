@@ -180,7 +180,7 @@ resize(struct hash *h, uint32_t newcap)
 		.load = h->load,
 		.max_load = (uint32_t)((float)newcap * LOAD_FACTOR),
 
-		.hash_func = h->hash_func_,
+		.hash_func = h->hash_func,
 		.keycmp = h->keycmp,
 	};
 
