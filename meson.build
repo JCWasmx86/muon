@@ -173,6 +173,7 @@ muon_dep = declare_dependency(
     include_directories: include_dir,
 )
 
+if not meson.is_subproject()
 muon = executable(
     'muon',
     src,
@@ -185,4 +186,5 @@ muon = executable(
 )
 
 subdir('tests')
+endif
 subdir('doc')
